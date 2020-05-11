@@ -23,16 +23,17 @@ Using Cisco Action Orchastrator:
  - SD-WAN - Initiate site to site connection using SD-WAN APIs
  - DC Networking - Using ACI APIs configure branch DC network 
  - DC Compute - Configure and virtualize baremetal UCS server using UCS manager APIs
- - DNA-C - Initiate site creation, Network device Discovery and provision devices
+ - DNAC - Initiate site creation, Network device Discovery and provision devices
  
 ## Setup and Configuration
  - Sign-up for an instance of [Cisco Action Orchestrator](https://engage2demand.cisco.com/lp_cisco_cloudcenter_suite_saas_free_trial_17572)
  - Import CAO automation JSON 
  
  ### `Import Flow Step 1`
- https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import1.png
+ ![alt text](https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import1.png)
+
  ### `Import Flow Step 2`
- https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import2.png
+ ![alt text](https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import2.png)
  
  
  - Configure workflow **Targets** [How To](https://docs.cloudmgmt.cisco.com/display/ACTIONORCHESTRATOR/Overview+Targets) for each technology. `Hint: you can point to the DevNet Always-on Sandbox`
