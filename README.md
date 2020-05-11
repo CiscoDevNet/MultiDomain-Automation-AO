@@ -16,6 +16,7 @@
  - Quickly deploy local network at the branch
  - Local compute is required. Grant local compute correct access to data center services
 
+https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/md.png
 
 ## The Tech: 
 Using Cisco Action Orchastrator:
@@ -27,6 +28,13 @@ Using Cisco Action Orchastrator:
 ## Setup and Configuration
  - Sign-up for an instance of [Cisco Action Orchestrator](https://engage2demand.cisco.com/lp_cisco_cloudcenter_suite_saas_free_trial_17572)
  - Import CAO automation JSON 
+ 
+ ### `Import Flow Step 1`
+ https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import1.png
+ ### `Import Flow Step 2`
+ https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import2.png
+ 
+ 
  - Configure workflow **Targets** [How To](https://docs.cloudmgmt.cisco.com/display/ACTIONORCHESTRATOR/Overview+Targets) for each technology. `Hint: you can point to the DevNet Always-on Sandbox`
  - Validate and run flows. 
 
