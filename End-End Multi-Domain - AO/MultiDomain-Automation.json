@@ -1,0 +1,2484 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb",
+    "name": "Multi Domain_Prod",
+    "title": "Multi Domain_Prod",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name MD",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Multi Domain_Prod",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01AQ2QE1X1XBD7V4CWquqREt974vLqlIzVX",
+        "name": "Initiate Automation",
+        "title": "Initiate Automation",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Initiate Automation",
+          "input": {
+            "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "# Initiating Site Launch  🚀 "
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "no_target": true
+          },
+          "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01ASWFM41K2MA6U6CSZwyCH8W099EpjQQST",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AQC7A5EG4GV4A0nWDNU76x10nxnr72SSc",
+            "name": "Post Msg To Teams_Prod",
+            "title": "Post Msg To Teams_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Post Msg To Teams_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "## Aquiring IP Address Pool via Netbox"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AO61YKTY59X7TLBWQ4MzHqvykWueefj3k",
+            "name": "Provision New Tenant Prefix_Prod",
+            "title": "Provision New Tenant Prefix_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Provision New Tenant Prefix_Prod",
+              "input": {
+                "variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9": "$workflow.definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb.input.variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": true,
+                "target_id": "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ASKCCGV7TVY6CJPeyQtuU10tZMQfYOSem",
+            "name": "Post Msg To Teams_Prod",
+            "title": "Post Msg To Teams_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Post Msg To Teams_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "> Pool Provisioned! \\n\\n"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01AS1MLZZM4DE6EvqN6tJEuKrDJYIge4yBy",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01ARKQVHOU3Y30UAV3AZUmCRMuXXmiLd3NB",
+            "name": "Teams - SDWAN Input_Prod",
+            "title": "Teams - SDWAN Input_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - SDWAN Input_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "## Kicking off SDWAN Deployment"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01D9HMWEQ02MG6KgN7WbuycqpCDJ5PedJZV",
+            "name": "SD-WAN Deploy_Prod",
+            "title": "SD-WAN Deploy_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "SD-WAN Deploy_Prod",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01AGADEYNMROP0cximVBt9kZqlkRyajyhTO"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ARM0F7ZGESZ17CYPwDLfR6PU1qKG2cnHK",
+            "name": "Teams - SDWAN Success_Prod",
+            "title": "Teams - SDWAN Success_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - SDWAN Success_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": ">*SD-WAN  Link Configured Successfully*\\n\\n>*New Site Connection Established*\\n\\n>**Configuration Dump Below:**"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ASVJ1609ZX73WjlaUaMnSNpqU0MJw3b7j",
+            "name": "Teams - SDWAN Dump_Prod",
+            "title": "Teams - SDWAN Dump_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - SDWAN Dump_Prod",
+              "input": {
+                "variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q": "https://raw.githubusercontent.com/kiskander/multi-domain/master/sdwan_template.json"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01AS1M2D0CDVG6j1HYgF7UOc9cUDINWwIwA",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01ARLYALLFNQ74zwFT53YDppAIXmeyjH15N",
+            "name": "Teams - ACI Input_Prod",
+            "title": "Teams - ACI Input_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - ACI Input_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "## Starting  ACI Configuration \\n\\n ### Deploying Ansible Playbook"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01EI1KAOUQ9RN3tTZgt0nKLRmE4lP9GXckV",
+            "name": "ACI Ansible_Prod",
+            "title": "ACI Ansible_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "ACI Ansible_Prod",
+              "input": {
+                "variable_workflow_01DLWXVB6WIYJ3Nbnbm916ASC5P78tpNVLG": "$workflow.definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb.input.variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": true,
+                "target_id": "definition_target_01AOBAJNJ49E62cvUVDf6CnTmVOMYu1P8qg",
+                "target_type": "terminal.endpoint"
+              },
+              "workflow_id": "definition_workflow_01DLWXUKQ8KNG01Lgt7gp7TmuL9g69wMyVs"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ARM2UOPCSN42GVyK9z2M5VWeXE2iamc7p",
+            "name": "Teams - ACI Success_Prod",
+            "title": "Teams - ACI Success_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - ACI Success_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": ">*ACI Configured Successfully*\\n\\n>*VLAN & New Tenant Created*\\n\\n>**Configuration Dump Below:**"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ASVZPPPLC836435N9UpWgDmQYs0kT8b9s",
+            "name": "Teams - ACI Dump_Prod",
+            "title": "Teams - ACI Dump_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - ACI Dump_Prod",
+              "input": {
+                "variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q": "https://raw.githubusercontent.com/kiskander/multi-domain/master/aci_config.json"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01ASW1H53OAK81vtY4jw5gHA1MueaY3CxsG",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01ARO4V85QMCU6SVj9WO5pSBENOB88qvjwA",
+            "name": "Teams - DNAC Input_Prod",
+            "title": "Teams - DNAC Input_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - DNAC Input_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "## Access Cisco DNA Center \\n\\n ### Configuring SSID \\n\\n ### Deploying SSID to site "
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AO63HN11ONW2wBEDafT0YiCVPjSJIZoih",
+            "name": "Create  SSID_Prod",
+            "title": "Create  SSID_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Create  SSID_Prod",
+              "input": {
+                "variable_workflow_01AO6LF7W93UL6gJXsbWUGx2OmJnPf0tUY9": "$workflow.definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb.input.variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01AIFEIFKFQOE6iqtEb1gU1AgefHaem1tbk"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AROA0HR9RGN35rdPyJQeBXPdtUq2Blo47",
+            "name": "Teams - DNAC Success_Prod",
+            "title": "Teams - DNAC Success_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - DNAC Success_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": ">*SSID Configured Successfully*\\n\\n>**Configuration Dump Below:**"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ASW97JB9JC90SY7hxd1JNcrh2KFAaAsRH",
+            "name": "Teams - DNAC Dump_Prod",
+            "title": "Teams - DNAC Dump_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - DNAC Dump_Prod",
+              "input": {
+                "variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q": "https://raw.githubusercontent.com/kiskander/multi-domain/master/dnac_ssid_config.json"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01ASWBZQXUSUN4IEB16YQSLEIjcVPSArn21",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AROJZDEDOXQ0dkHtLbHa9VDMgQqIIKfuQ",
+            "name": "Teams -UCSP Input_Prod",
+            "title": "Teams -UCSP Input_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams -UCSP Input_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "## Starting  UCS  Configuration \\n\\n ### Configuring New UCS Org "
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AOIYY9EBEET33IM6e3L0oDVCikAYxUSwx",
+            "name": "UCS Org_Prod",
+            "title": "UCS Org_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "UCS Org_Prod",
+              "input": {
+                "variable_workflow_01AO8UDDA2X8F2ujcHMfnPlPjfULy9WskOu": "$workflow.definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb.input.variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ARORWV1EJ133fSKyxddmt3QWygUUXn6mD",
+            "name": "Teams -UCS Org_Prod",
+            "title": "Teams -UCS Org_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams -UCS Org_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "### Configuring Service Profile"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AOIY0TD04TK51afiKA6FrB4rAEhEdQ4W4",
+            "name": "UCS Service Profile_Prod",
+            "title": "UCS Service Profile_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "UCS Service Profile_Prod",
+              "input": {
+                "variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy": "$workflow.definition_workflow_01AO5YVWUYOP249CV0320xR7XzOxeqXwkzb.input.variable_workflow_01AO69Q9GMRT25FdyaGKLYtFnoXaeVJGMp5$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AROPTDSQIP70aAbwvU2uufoNTIZqLvTvT",
+            "name": "Teams -UCS Org Success_Prod",
+            "title": "Teams -UCS Org Success_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams -UCS Org Success_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": ">*New Org Configured Successfully*\\n\\n >*Service Profile Configured Successfully*\\n\\n >**Configuration Dump Below:**"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01ASWHSP3HGSB3O47n3ZIMMXYkz8edd8QkB",
+            "name": "Teams - UCSP Dump_Prod",
+            "title": "Teams - UCSP Dump_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams - UCSP Dump_Prod",
+              "input": {
+                "variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q": "https://raw.githubusercontent.com/kiskander/multi-domain/master/ucsp_config.json"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AROUNLOPU1C7bstL3PtcrIomBdCzMLzQm",
+            "name": "Teams -UCS Success_Prod",
+            "title": "Teams -UCS Success_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Teams -UCS Success_Prod",
+              "input": {
+                "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l": "# 🔥Resources Created 🔥\\n\\n >**Webserver/Adserver Deployed:** \\n\\n >ssh admin@54.89.119.42 \\n\\n >Password: admin"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "no_target": true
+              },
+              "workflow_id": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "categories": {
+    "category_01AOI43KPWD6W6N130OYzQ2H2CRctnsnHQu": {
+      "unique_name": "category_01AOI43KPWD6W6N130OYzQ2H2CRctnsnHQu",
+      "name": "UCS",
+      "title": "UCS",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_01EI1J12VFT5Q6TbVuGbeGBw6dhyRAmMBGV": {
+      "unique_name": "category_01EI1J12VFT5Q6TbVuGbeGBw6dhyRAmMBGV",
+      "name": "ACI",
+      "title": "ACI",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0": {
+      "unique_name": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0",
+      "name": "SD-WAN-SBX",
+      "title": "SD-WAN-SBX",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey",
+        "disable_certificate_validation": true,
+        "display_name": "SD-WAN-SBX",
+        "host": "sandboxsdwan.cisco.com",
+        "no_runtime_user": false,
+        "port": 8443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC": {
+      "unique_name": "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC",
+      "name": "AO SB DNAC2",
+      "title": "AO SB DNAC2",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch",
+        "disable_certificate_validation": false,
+        "display_name": "AO SB DNAC2",
+        "host": "sandboxdnac2.cisco.com",
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01AJBAU71W83K30AQLZp2cUdVDmM6nbKWJZ": {
+      "unique_name": "definition_target_01AJBAU71W83K30AQLZp2cUdVDmM6nbKWJZ",
+      "name": "AWS API Gateway dc-funcs",
+      "title": "AWS API Gateway dc-funcs",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "AWS API Gateway dc-funcs",
+        "host": "0rgekeo9u7.execute-api.us-east-1.amazonaws.com",
+        "no_runtime_user": true,
+        "path": "/default/ucs-funcs",
+        "protocol": "https"
+      }
+    },
+    "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO": {
+      "unique_name": "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO",
+      "name": "AWS Demo Netbox",
+      "title": "AWS Demo Netbox",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "AWS Demo Netbox",
+        "host": "ec2-54-89-119-42.compute-1.amazonaws.com",
+        "no_runtime_user": true,
+        "protocol": "http"
+      }
+    },
+    "definition_target_01AO3JQ589O023Y2MEmFX6PW03jnxdLL4pj": {
+      "unique_name": "definition_target_01AO3JQ589O023Y2MEmFX6PW03jnxdLL4pj",
+      "name": "linux-dev-azure",
+      "title": "linux-dev-azure",
+      "type": "terminal.unix_linux_endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "bash_shell": "/bin/bash",
+        "default_runtime_user_id": "definition_runtime_user_01AO5PGYID4V639zxgA1oxK8ECOPTEoTa55",
+        "display_name": "linux-dev-azure",
+        "host": "jomcdono-linux-dev.eastus.cloudapp.azure.com",
+        "port": 22
+      }
+    },
+    "definition_target_01AOBAJNJ49E62cvUVDf6CnTmVOMYu1P8qg": {
+      "unique_name": "definition_target_01AOBAJNJ49E62cvUVDf6CnTmVOMYu1P8qg",
+      "name": "linux-dev-azure-term",
+      "title": "linux-dev-azure-term",
+      "type": "terminal.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01AO5PGYID4V639zxgA1oxK8ECOPTEoTa55",
+        "display_name": "linux-dev-azure-term",
+        "host": "jomcdono-linux-dev.eastus.cloudapp.azure.com",
+        "port": 22,
+        "protocol": "ssh"
+      }
+    },
+    "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im": {
+      "unique_name": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im",
+      "name": "Teams - PostMsg",
+      "title": "Teams - PostMsg",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Teams - PostMsg",
+        "host": "api.ciscospark.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch": {
+      "unique_name": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch",
+      "name": "AO DNAC2 Creds",
+      "title": "AO DNAC2 Creds",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "AO DNAC2 Creds"
+      }
+    },
+    "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey": {
+      "unique_name": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey",
+      "name": "SD-WAN-SBX-CREDS",
+      "title": "SD-WAN-SBX-CREDS",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "SD-WAN-SBX-CREDS"
+      }
+    },
+    "definition_runtime_user_01AO5PGYID4V639zxgA1oxK8ECOPTEoTa55": {
+      "unique_name": "definition_runtime_user_01AO5PGYID4V639zxgA1oxK8ECOPTEoTa55",
+      "name": "linux-dev-azure-key",
+      "title": "linux-dev-azure-key",
+      "type": "runtime_user.terminal_password_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "linux-dev-azure-key",
+        "password": "*****",
+        "user": "*****"
+      }
+    }
+  },
+  "variables": {
+    "variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz": {
+      "unique_name": "variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz",
+      "properties": {
+        "value": "88515d2f59922d087f74b3667fc64d0273a0969b",
+        "scope": "global",
+        "name": "Netbox Auth Token",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL": {
+      "unique_name": "variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL",
+      "properties": {
+        "value": "Bearer MjkzZTNjNmItYWEyMC00MzIwLWEwNWEtZGQ1ODE5YTY2MTYzYzQ5NGQ4MzEtNDlh_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "scope": "global",
+        "name": "BotToken",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr": {
+      "unique_name": "variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr",
+      "properties": {
+        "value": "Y2lzY29zcGFyazovL3VzL1JPT00vZDM0NzY3ODAtZWYxMy0xMWU5LWJkNDgtNWQ5MDZjYmE5ODA5",
+        "scope": "global",
+        "name": "RoomId",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g",
+        "name": "Post Msg_Prod",
+        "title": "Post Msg_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "msgText",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "Post Msg_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01APH1P3HPSLC6ReMsxVK5DTnsHklwMT06G",
+            "name": "HTTP Request",
+            "title": "Post Msg_Prod",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n \"markdown\": \"$workflow.definition_workflow_01APH0MC44W1U2urGj3CkNIsCrO67qQCP4g.input.variable_workflow_01AQBGP43MM984CUUOctixujsx0dSsBBe6l$\",\n \"roomId\": \"$global.variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr.global.variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr$\"\n} ",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "$global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL.global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL$"
+                }
+              ],
+              "display_name": "Post Msg_Prod",
+              "method": "POST",
+              "relative_url": "/v1/messages",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm",
+        "name": " Post Files to Teams_Prod",
+        "title": " Post Files to Teams_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Files Link",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": " Post Files to Teams_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01ASKVYCCD0RU08dO6JCKGIhJ0ULW1vrezi",
+            "name": "HTTP Request",
+            "title": "Post File_Prod",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n\"files\": \"$workflow.definition_workflow_01ASKVWJRK77A5bLjBdJWNxMaMNGP3daJtm.input.variable_workflow_01ASKY1RQ6IRO69bgfHbV4Di38Vf1uCE43q$\",\n\"roomId\": \"$global.variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr.global.variable_01APGVROUHRDZ0DIffkz8RMsONHpkg2czcr$\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "$global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL.global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL$"
+                }
+              ],
+              "display_name": "Post File_Prod",
+              "method": "POST",
+              "relative_url": "/v1/messages",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB",
+        "name": "Provision New Tenant Prefix_Prod",
+        "title": "Provision New Tenant Prefix_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "10.255.0.0/16",
+              "scope": "local",
+              "name": "TENANT_PREFIX_CONTAINER",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AKXAC7KBWCX1GK6hC7xZtAWEUSl7TJbDg",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.integer",
+            "properties": {
+              "value": 0,
+              "scope": "local",
+              "name": "TENANT_GROUP_ID",
+              "type": "datatype.integer",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AKXK30UQ5SD2667Ccvy0SN7XU6GAumTou",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "local",
+              "name": "CONTAINER_PREFIX",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AKX89RJID9U0v3MWw4mSoUXUEV5rPmpxV",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.integer",
+            "properties": {
+              "value": 0,
+              "scope": "local",
+              "name": "CONTAINER_PREFIX_ID",
+              "type": "datatype.integer",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AKX89RJIEQ53nI5e9M17oNZRZJTDOrkTs",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Tenant_Name",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "New_Prefix",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AKX974A5OA80aqDda85ptl8EtyXpqnpyE",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "Provision New Tenant Prefix_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "target_type": "web-service.endpoint",
+            "target_id": "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO",
+            "execute_on_workflow_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AKXHNVTCZ3Z31GGC01TqYeBU6kSO4jaAJ",
+            "name": "Replace String",
+            "title": "Create Slug 1",
+            "type": "core.replacestring",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Create Slug 1",
+              "input_string": "$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.input.variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9$",
+              "replace_list": [
+                {
+                  "replaced_string": " ",
+                  "replacement_string": "-"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXIUQYTP5S4FKBN19OSRxAFuFNDPAAK3",
+            "name": "HTTP Request",
+            "title": "Get Tenant Group",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                }
+              ],
+              "display_name": "Get Tenant Group",
+              "method": "GET",
+              "relative_url": "/api/tenancy/tenant-groups/?name=Multi-Domain%20Demo%20Tenants",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXK5NLVBH360lbZlSHiSCG4blAjZ0eGd",
+            "name": "JSONPath Query",
+            "title": "Process Tenant Group",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Process Tenant Group",
+              "input_json": "$activity.definition_activity_01AKXIUQYTP5S4FKBN19OSRxAFuFNDPAAK3.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.results[0].id",
+                  "jsonpath_query_name": "tenant_group_id",
+                  "jsonpath_query_type": "integer"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXLMBKU0E07YmKliPbkYxpKu47nQFZZM",
+            "name": "Set Variables",
+            "title": "Set Tenant Group Variable",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Tenant Group Variable",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.local.variable_workflow_01AKXK30UQ5SD2667Ccvy0SN7XU6GAumTou$",
+                  "variable_value_new": "$activity.definition_activity_01AKXK5NLVBH360lbZlSHiSCG4blAjZ0eGd.output.jsonpath_queries.tenant_group_id$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXD4B6WO137MNeSV2CPH2lHUyMOxTU9h",
+            "name": "HTTP Request",
+            "title": "Create New Tenant",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n  \"name\": \"$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.input.variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9$\", \n  \"slug\": \"$activity.definition_activity_01AKXHNVTCZ3Z31GGC01TqYeBU6kSO4jaAJ.output.result_string$\", \n  \"group\": \"$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.local.variable_workflow_01AKXK30UQ5SD2667Ccvy0SN7XU6GAumTou$\", \n  \"description\":\"Multi-Domain Tenant - $workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.input.variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9$\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                }
+              ],
+              "display_name": "Create New Tenant",
+              "method": "POST",
+              "relative_url": "/api/tenancy/tenants/",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXN728DJPV07vHihFJouEkcXM704ycPA",
+            "name": "JSONPath Query",
+            "title": "Process New Tenant Data",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Process New Tenant Data",
+              "input_json": "$activity.definition_activity_01AKXD4B6WO137MNeSV2CPH2lHUyMOxTU9h.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.id",
+                  "jsonpath_query_name": "tenant_id",
+                  "jsonpath_query_type": "integer"
+                },
+                {
+                  "jsonpath_query": "$.name",
+                  "jsonpath_query_name": "tenant_name",
+                  "jsonpath_query_type": "string"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXOPHYDT8T2pM5z9TPYanC91tC9ZchAc",
+            "name": "HTTP Request",
+            "title": "Create Tenant VRF",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n    \"name\": \"$activity.definition_activity_01AKXHNVTCZ3Z31GGC01TqYeBU6kSO4jaAJ.output.result_string$\",\n    \"rd\": \"$activity.definition_activity_01AKXHNVTCZ3Z31GGC01TqYeBU6kSO4jaAJ.output.result_string$\",\n    \"tenant\": $activity.definition_activity_01AKXN728DJPV07vHihFJouEkcXM704ycPA.output.jsonpath_queries.tenant_id$,\n    \"enforce_unique\": true,\n    \"description\": \"VRF for Tenant $workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.input.variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9$\",\n    \"tags\": [],\n    \"custom_fields\": {}\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                }
+              ],
+              "display_name": "Create Tenant VRF",
+              "method": "POST",
+              "relative_url": "/api/ipam/vrfs/",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKXS40NV44T0A6jK5p8ryBaqeBtE3fnKv",
+            "name": "JSONPath Query",
+            "title": "Process New VRF Data",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Process New VRF Data",
+              "input_json": "$activity.definition_activity_01AKXOPHYDT8T2pM5z9TPYanC91tC9ZchAc.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.id",
+                  "jsonpath_query_name": "vrf_id",
+                  "jsonpath_query_type": "integer"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKX8A055U7X3p1QO0lfP4T995iUfuZeg8",
+            "name": "HTTP Request",
+            "title": "Get Prefix Container",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                }
+              ],
+              "display_name": "Get Prefix Container",
+              "method": "GET",
+              "relative_url": "/api/ipam/prefixes/?prefix=$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.local.variable_workflow_01AKXAC7KBWCX1GK6hC7xZtAWEUSl7TJbDg$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKX8A93N28R6EZfIq3cqyKqdHn8AuWcQa",
+            "name": "JSONPath Query",
+            "title": "Process Container Prefix Body",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Process Container Prefix Body",
+              "input_json": "$activity.definition_activity_01AKX8A055U7X3p1QO0lfP4T995iUfuZeg8.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.results[0].prefix",
+                  "jsonpath_query_name": "prefix",
+                  "jsonpath_query_type": "string"
+                },
+                {
+                  "jsonpath_query": "$.results[0].id",
+                  "jsonpath_query_name": "prefix_id",
+                  "jsonpath_query_type": "integer"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKX8AQCB4O250bp6rzi4aHnXLDtVezD0c",
+            "name": "HTTP Request",
+            "title": "Provision New Prefix",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n\t\"prefix\": \"$activity.definition_activity_01AKX8A93N28R6EZfIq3cqyKqdHn8AuWcQa.output.jsonpath_queries.prefix$\", \n  \"prefix_length\": 26,\n\t\"description\": \"New Bridge Domain Prefix for $workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.input.variable_workflow_01AKX89RJIFZX279RxjLMuQFdGXlTgXz0u9$\", \n  \"vrf\": $activity.definition_activity_01AKXS40NV44T0A6jK5p8ryBaqeBtE3fnKv.output.jsonpath_queries.vrf_id$, \n \"tenant\": $activity.definition_activity_01AKXN728DJPV07vHihFJouEkcXM704ycPA.output.jsonpath_queries.tenant_id$\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                }
+              ],
+              "display_name": "Provision New Prefix",
+              "method": "POST",
+              "relative_url": "/api/ipam/prefixes/$activity.definition_activity_01AKX8A93N28R6EZfIq3cqyKqdHn8AuWcQa.output.jsonpath_queries.prefix_id$/available-prefixes/",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKX8AYHCQYI7OXKHWuX2uxn5A2pmB5bD8",
+            "name": "JSONPath Query",
+            "title": "Read In New Prefix",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Read In New Prefix",
+              "input_json": "$activity.definition_activity_01AKX8AQCB4O250bp6rzi4aHnXLDtVezD0c.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.prefix",
+                  "jsonpath_query_name": "prefix",
+                  "jsonpath_query_type": "string"
+                },
+                {
+                  "jsonpath_query": "$.id",
+                  "jsonpath_query_name": "prefix_id",
+                  "jsonpath_query_type": "string"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AKX8B5FB6RQ2zUpD7ZpWB4OPEGgI1ALXg",
+            "name": "Set Variables",
+            "title": "Set OUTPUT Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set OUTPUT Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AKX899F4LEU5DPypFVOLDwOSZReGngsrB.output.variable_workflow_01AKX974A5OA80aqDda85ptl8EtyXpqnpyE$",
+                  "variable_value_new": "$activity.definition_activity_01AKX8AYHCQYI7OXKHWuX2uxn5A2pmB5bD8.output.jsonpath_queries.prefix$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01DLWXUKQ8KNG01Lgt7gp7TmuL9g69wMyVs",
+        "name": "ACI Ansible_Prod",
+        "title": "ACI Ansible_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Tenant Name",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01DLWXVB6WIYJ3Nbnbm916ASC5P78tpNVLG",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "result",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01DLWXVB6WE4L4uD162fk6tthZzb2VyWpwA",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "ACI Ansible_Prod",
+          "runtime_user": {
+            "target_default": true
+          },
+          "target": {
+            "target_type": "terminal.endpoint",
+            "target_id": "definition_target_01AOBAJNJ49E62cvUVDf6CnTmVOMYu1P8qg",
+            "execute_on_workflow_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01EBDUO4IAPYY2Mb3EzjxjMGKaZjjDQW5f6",
+            "name": "Execute Linux/Unix SSH Script",
+            "title": "Execute Linux/Unix SSH Script",
+            "type": "terminal.ssh_script",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": true,
+              "display_name": "Execute Linux/Unix SSH Script",
+              "multiple_arguments": false,
+              "runtime_user": {
+                "override_target_runtime_user": true,
+                "runtime_user_id": "definition_runtime_user_01AO5PGYID4V639zxgA1oxK8ECOPTEoTa55"
+              },
+              "script": "./run-ao-cmd.sh $workflow.definition_workflow_01DLWXUKQ8KNG01Lgt7gp7TmuL9g69wMyVs.input.variable_workflow_01DLWXVB6WIYJ3Nbnbm916ASC5P78tpNVLG$",
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "override_workflow_target_group_criteria": false,
+                "target_id": "definition_target_01AO3JQ589O023Y2MEmFX6PW03jnxdLL4pj",
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_01EI1J12VFT5Q6TbVuGbeGBw6dhyRAmMBGV"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01AIFEIFKFQOE6iqtEb1gU1AgefHaem1tbk",
+        "name": "Create  SSID_Prod",
+        "title": "Create  SSID_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "local",
+              "name": "Token",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AIFFK3GI79H0YQCfMGS0gxQCIcAfIq3ys",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Tenant Name",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01AO6LF7W93UL6gJXsbWUGx2OmJnPf0tUY9",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "description": "Use the Intent APIs to dynamically Create  and Deploy SSID",
+          "display_name": "Create  SSID_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "no_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AIG6SYHQG0H7lrYvOYubi7e4jldpcJcX6",
+            "name": "HTTP Request",
+            "title": "DNA-C Authenticate",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "https://sandboxdnac2.cisco.com/api/system/v1/auth/token",
+              "display_name": "DNA-C Authenticate",
+              "method": "POST",
+              "relative_url": "api/system/v1/auth/token",
+              "runtime_user": {
+                "override_target_runtime_user": true,
+                "runtime_user_id": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch"
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AILWRI2XSFK6DYYpDhDFoOkgUztRJkPL8",
+            "name": "JSONPath Query",
+            "title": "Token",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Token",
+              "input_json": "$activity.definition_activity_01AIG6SYHQG0H7lrYvOYubi7e4jldpcJcX6.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.Token",
+                  "jsonpath_query_name": "Token",
+                  "jsonpath_query_type": "string"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AIM3KH8WMYN1Pxvk7CHoyruAxMWr7gPZK",
+            "name": "HTTP Request",
+            "title": "DNA-C Create SSID",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n    \"name\": \"$workflow.definition_workflow_01AIFEIFKFQOE6iqtEb1gU1AgefHaem1tbk.input.variable_workflow_01AO6LF7W93UL6gJXsbWUGx2OmJnPf0tUY9$\",\n    \"securityLevel\": \"WPA2_ENTERPRISE\",\n    \"passphrase\": \"superS3cret\",\n    \"enableFastLane\": \"True\",\n    \"enableMACFiltering\": \"False\",\n    \"enableBroadcastSSID\": \"True\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "x-auth-token",
+                  "value": "$activity.definition_activity_01AILWRI2XSFK6DYYpDhDFoOkgUztRJkPL8.output.jsonpath_queries.Token$"
+                }
+              ],
+              "description": "/dna/intent/api/v1/enterprise-ssid",
+              "display_name": "DNA-C Create SSID",
+              "method": "POST",
+              "relative_url": "/dna/intent/api/v1/enterprise-ssid",
+              "runtime_user": {
+                "override_target_runtime_user": true,
+                "runtime_user_id": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch"
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ",
+        "name": "UCS Org_Prod",
+        "title": "UCS Org_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "local",
+              "name": "UCS_CONFIG_PAYLOAD_ORG",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AO8Y972MQGJ0uFDvtt6iTn6XcJRjYht0U",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Tenant Name",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01AO8UDDA2X8F2ujcHMfnPlPjfULy9WskOu",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "UCS Org_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AO8YD6GXV3V4d8xAzbsOmHjljp3Y3Nznn",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ.local.variable_workflow_01AO8Y972MQGJ0uFDvtt6iTn6XcJRjYht0U$",
+                  "variable_value_new": "{\n  \"auth\": {\n    \"hostname\": \"sandbox-ucsm1.cisco.com\",\n    \"username\": \"admin\",\n    \"password\": \"password\"\n  },\n  \"action\": {\n    \"method\": \"configure\",\n    \"objects\": [\n{\n            \"module\": \"ucsmsdk.mometa.org.OrgOrg\",\n            \"class\": \"OrgOrg\",\n            \"properties\":{\n                \"parent_mo_or_dn\": \"org-root\",\n                \"name\": \"uni\"\n            },\n            \"message\": \"created organization uni \"\n        },\n     {\n            \"module\": \"ucsmsdk.mometa.org.OrgOrg\",\n            \"class\": \"OrgOrg\",\n            \"properties\":{\n                \"parent_mo_or_dn\": \"org-root/org-uni\",\n                \"name\": \"$workflow.definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ.input.variable_workflow_01AO8UDDA2X8F2ujcHMfnPlPjfULy9WskOu$\"\n            },\n            \"message\": \"created organization uni/$workflow.definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ.input.variable_workflow_01AO8UDDA2X8F2ujcHMfnPlPjfULy9WskOu$\"\n        }\n    ]\n  }\n}"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AOIR36MY2GF50wFYZBzcU53z0GDPk8z1e",
+            "name": "UCS Functions_Prod",
+            "title": "UCS Functions_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "UCS Functions_Prod",
+              "input": {
+                "variable_workflow_01AK57Q2YFS9O5ztzJtqYCuwldw8ymhLAze": "$workflow.definition_workflow_01AO8DAHGP66K71vsuMCE3nWECSFjW5WqHZ.local.variable_workflow_01AO8Y972MQGJ0uFDvtt6iTn6XcJRjYht0U$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": true,
+                "target_id": "definition_target_01AJBAU71W83K30AQLZp2cUdVDmM6nbKWJZ",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01AJB7TZC8Y1E2m6ByhvOa17l370m446s7W"
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_01AOI43KPWD6W6N130OYzQ2H2CRctnsnHQu"
+        ]
+      },
+      "subworkflows": [
+        {
+          "workflow": {
+            "unique_name": "definition_workflow_01AJB7TZC8Y1E2m6ByhvOa17l370m446s7W",
+            "name": "UCS Functions_Prod",
+            "title": "UCS Functions_Prod",
+            "type": "generic.workflow",
+            "base_type": "workflow",
+            "variables": [
+              {
+                "schema_id": "datatype.string",
+                "properties": {
+                  "value": "",
+                  "scope": "output",
+                  "name": "UCS_FUNCS_RESULT",
+                  "type": "datatype.string",
+                  "is_required": false
+                },
+                "unique_name": "variable_workflow_01AK4Z818HXLX0PDAo2FUakUj7DWLD3Flfb",
+                "object_type": "variable_workflow"
+              },
+              {
+                "schema_id": "datatype.string",
+                "properties": {
+                  "value": "",
+                  "scope": "input",
+                  "name": "UCS_FUNCS_REQUEST",
+                  "type": "datatype.string",
+                  "is_required": true
+                },
+                "unique_name": "variable_workflow_01AK57Q2YFS9O5ztzJtqYCuwldw8ymhLAze",
+                "object_type": "variable_workflow"
+              }
+            ],
+            "properties": {
+              "atomic": {
+                "is_atomic": false
+              },
+              "delete_workflow_instance": false,
+              "description": "Query / Configure UCS Manager",
+              "display_name": "UCS Functions_Prod",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "specify_on_workflow_start": false,
+                "target_default": true
+              },
+              "target": {
+                "target_type": "web-service.endpoint",
+                "target_id": "definition_target_01AJBAU71W83K30AQLZp2cUdVDmM6nbKWJZ",
+                "execute_on_workflow_target": true
+              }
+            },
+            "object_type": "definition_workflow",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01AJB8MU4XHM46uDKNZQVlIicf3MZSbT6NW",
+                "name": "HTTP Request",
+                "title": "ucs-funcs-aws-api-gateway",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "$workflow.definition_workflow_01AJB7TZC8Y1E2m6ByhvOa17l370m446s7W.input.variable_workflow_01AK57Q2YFS9O5ztzJtqYCuwldw8ymhLAze$",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "description": "Perform operations on target UCS",
+                  "display_name": "ucs-funcs-aws-api-gateway",
+                  "method": "POST",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AK4ZC0M1UGK1Y9wSg90nfGiqwQk8EmKbF",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01AJB7TZC8Y1E2m6ByhvOa17l370m446s7W.output.variable_workflow_01AK4Z818HXLX0PDAo2FUakUj7DWLD3Flfb$",
+                      "variable_value_new": "$activity.definition_activity_01AJB8MU4XHM46uDKNZQVlIicf3MZSbT6NW.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ],
+            "categories": [
+              "category_01AOI43KPWD6W6N130OYzQ2H2CRctnsnHQu"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI",
+        "name": "UCS Service Profile_Prod",
+        "title": "UCS Service Profile_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "local",
+              "name": "UCS_CONFIG_PAYLOD",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01AOI9ROP724A5hANiwZlDzRK3kp2UxHDM6",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Tenant Name",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "UCS Service Profile_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AOIGHBX0Z9Q5OGlIOXDrdWAMap8BP3BUA",
+            "name": "Provision Mgmt IP Address_Prod",
+            "title": "Provision Mgmt IP Address_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Provision Mgmt IP Address_Prod",
+              "input": {
+                "variable_workflow_01AKUF7P53Q6I5otp0Z0z4dC7HpNN3MHgdr": "$workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.input.variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": true,
+                "target_id": "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AOI8XMGHFA05JDnFaitFjsX2UYFwv7ysk",
+            "name": "Set Variables",
+            "title": "Set Variables_Prod",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables_Prod",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.local.variable_workflow_01AOI9ROP724A5hANiwZlDzRK3kp2UxHDM6$",
+                  "variable_value_new": "{\n  \"auth\": {\n    \"hostname\": \"sandbox-ucsm1.cisco.com\",\n    \"username\": \"admin\",\n    \"password\": \"password\"\n  },\n  \"action\": {\n    \"method\": \"configure\",\n    \"objects\": [\n     {\n            \"module\": \"ucsmsdk.mometa.uuidpool.UuidpoolPool\",\n            \"class\": \"UuidpoolPool\", \n            \"properties\": {\n                \"parent_mo_or_dn\": \"org-root/org-uni\",\n                \"name\": \"uni-uuid-pool\",\n                \"assignment_order\": \"sequential\"\n            },\n            \"children\": [\n                 {\n                        \"module\": \"ucsmsdk.mometa.uuidpool.UuidpoolBlock\",\n                        \"class\": \"UuidpoolBlock\",\n                        \"properties\": {\n                                  \"r_from\": \"0000-0000000FF001\",\n                                   \"to\": \"0000-0000000FF080\"\n                        }\n                 }\n            ]\n     },\n{\n                \"module\": \"ucsmsdk.mometa.macpool.MacpoolPool\",\n                \"class\": \"MacpoolPool\", \n                \"properties\": {\n                    \"parent_mo_or_dn\": \"org-root/org-uni\",\n                    \"name\": \"uni-mac-pool-A\",\n                    \"assignment_order\": \"sequential\"\n                },\n                \"children\": [\n                    {\n                        \"module\": \"ucsmsdk.mometa.macpool.MacpoolBlock\",\n                        \"class\": \"MacpoolBlock\",\n                        \"properties\": {\n                                \"r_from\": \"00:25:B5:FF:0A:00\",\n                                \"to\": \"00:25:B5:FF:0A:7F\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"module\": \"ucsmsdk.mometa.macpool.MacpoolPool\",\n                \"class\": \"MacpoolPool\", \n                \"properties\": {\n                    \"parent_mo_or_dn\": \"org-root/org-uni\",\n                    \"name\": \"uni-mac-pool-B\",\n                    \"assignment_order\": \"sequential\"\n                },\n                \"children\": [\n                    {\n                        \"module\": \"ucsmsdk.mometa.macpool.MacpoolBlock\",\n                        \"class\": \"MacpoolBlock\",\n                        \"properties\": {\n                                \"r_from\": \"00:25:B5:FF:0B:00\",\n                                \"to\": \"00:25:B5:FF:0B:7F\"\n                        }\n                    }\n                ]\n            },\n     {\n            \"module\": \"ucsmsdk.mometa.ls.LsServer\",\n            \"class\": \"LsServer\",\n            \"properties\": {\n                \"parent_mo_or_dn\": \"org-root/org-uni/org-$workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.input.variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy$\",\n                \"name\": \"$workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.input.variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy$_SP1\",\n                \"descr\": \"$activity.definition_activity_01AOIGHBX0Z9Q5OGlIOXDrdWAMap8BP3BUA.output.variable_workflow_01AKUFG4YMX3R0j7MYAsQYf97Lc8hpslcre$\"\n            },\n            \"message\": \"created organization $workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.input.variable_workflow_01AOI6QRRKQBQ3x11OBkK8UxL5PtarXo4Zy$\"\n        }\n    ]\n  }\n}"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AOISEQ4MJXG1uDWg5tp0k2qOh9VxuPtMM",
+            "name": "UCS Functions_Prod",
+            "title": "UCS Functions_Prod",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "UCS Functions_Prod",
+              "input": {
+                "variable_workflow_01AK57Q2YFS9O5ztzJtqYCuwldw8ymhLAze": "$workflow.definition_workflow_01AOI5X3NWCF276vJs4KFv4MGNdGYTohhdI.local.variable_workflow_01AOI9ROP724A5hANiwZlDzRK3kp2UxHDM6$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "execute_on_this_target": true,
+                "target_id": "definition_target_01AJBAU71W83K30AQLZp2cUdVDmM6nbKWJZ",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01AJB7TZC8Y1E2m6ByhvOa17l370m446s7W"
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_01AOI43KPWD6W6N130OYzQ2H2CRctnsnHQu"
+        ]
+      },
+      "subworkflows": [
+        {
+          "workflow": {
+            "unique_name": "definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy",
+            "name": "Provision Mgmt IP Address_Prod",
+            "title": "Provision Mgmt IP Address_Prod",
+            "type": "generic.workflow",
+            "base_type": "workflow",
+            "variables": [
+              {
+                "schema_id": "datatype.integer",
+                "properties": {
+                  "value": 0,
+                  "scope": "local",
+                  "name": "MGMT_PREFIX_ID",
+                  "type": "datatype.integer",
+                  "is_required": false
+                },
+                "unique_name": "variable_workflow_01AKWL1GS9ZMS7YXVR5Ki8tJhiDLXg6GXEV",
+                "object_type": "variable_workflow"
+              },
+              {
+                "schema_id": "datatype.string",
+                "properties": {
+                  "value": "",
+                  "scope": "input",
+                  "name": "Tenant_Name",
+                  "type": "datatype.string",
+                  "is_required": true
+                },
+                "unique_name": "variable_workflow_01AKUF7P53Q6I5otp0Z0z4dC7HpNN3MHgdr",
+                "object_type": "variable_workflow"
+              },
+              {
+                "schema_id": "datatype.string",
+                "properties": {
+                  "value": "",
+                  "scope": "output",
+                  "name": "IP_Address",
+                  "type": "datatype.string",
+                  "is_required": false
+                },
+                "unique_name": "variable_workflow_01AKUFG4YMX3R0j7MYAsQYf97Lc8hpslcre",
+                "object_type": "variable_workflow"
+              },
+              {
+                "schema_id": "datatype.string",
+                "properties": {
+                  "value": "",
+                  "scope": "local",
+                  "name": "MGMT_PREFIX",
+                  "type": "datatype.string",
+                  "is_required": false
+                },
+                "unique_name": "variable_workflow_01AKWKV4BY2D57LZPFLSryGYsnVHJXZWrbf",
+                "object_type": "variable_workflow"
+              }
+            ],
+            "properties": {
+              "atomic": {
+                "is_atomic": false
+              },
+              "delete_workflow_instance": false,
+              "display_name": "Provision Mgmt IP Address_Prod",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "specify_on_workflow_start": false,
+                "target_default": true
+              },
+              "target": {
+                "target_type": "web-service.endpoint",
+                "target_id": "definition_target_01AKU6L2I06O33TrexZlVAs4ZfAaHProCOO",
+                "execute_on_workflow_target": true
+              }
+            },
+            "object_type": "definition_workflow",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01AKUECPM0T2T4ufn9Rup7klgn8SeFZqrTv",
+                "name": "HTTP Request",
+                "title": "Get Mgmt Prefix",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                    }
+                  ],
+                  "display_name": "Get Mgmt Prefix",
+                  "method": "GET",
+                  "relative_url": "/api/ipam/prefixes/?tenant=multi-domain-mgmt",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AKWLZEI2BFU31q0Ups365i53RXPIGRGX6",
+                "name": "JSONPath Query",
+                "title": "Process Mgmt Prefix Body",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Process Mgmt Prefix Body",
+                  "input_json": "$activity.definition_activity_01AKUECPM0T2T4ufn9Rup7klgn8SeFZqrTv.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.results[0].prefix",
+                      "jsonpath_query_name": "prefix",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.results[0].id",
+                      "jsonpath_query_name": "prefix_id",
+                      "jsonpath_query_type": "integer"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AKWJZHZWPC44X4wuXcTExAsM8KzaWtHNU",
+                "name": "Set Variables",
+                "title": "Set Prefix Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Prefix Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.local.variable_workflow_01AKWKV4BY2D57LZPFLSryGYsnVHJXZWrbf$",
+                      "variable_value_new": "$activity.definition_activity_01AKWLZEI2BFU31q0Ups365i53RXPIGRGX6.output.jsonpath_queries.prefix$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.local.variable_workflow_01AKWL1GS9ZMS7YXVR5Ki8tJhiDLXg6GXEV$",
+                      "variable_value_new": "$activity.definition_activity_01AKWLZEI2BFU31q0Ups365i53RXPIGRGX6.output.jsonpath_queries.prefix_id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AKWXB1QYYXR2OG4Ax9QiWlr0rLRv2i4bb",
+                "name": "HTTP Request",
+                "title": "Provision New IP Address",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n\t\"prefix\": \"$workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.local.variable_workflow_01AKWKV4BY2D57LZPFLSryGYsnVHJXZWrbf$\", \n\t\"description\": \"KVM Address for $workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.input.variable_workflow_01AKUF7P53Q6I5otp0Z0z4dC7HpNN3MHgdr$\"\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Token $global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz.global.variable_01AKX01LXLUBX03mrrWuXFILS0ZvldVELAz$"
+                    }
+                  ],
+                  "display_name": "Provision New IP Address",
+                  "method": "POST",
+                  "relative_url": "/api/ipam/prefixes/$workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.local.variable_workflow_01AKWL1GS9ZMS7YXVR5Ki8tJhiDLXg6GXEV$/available-ips/",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AKX0O461LDL2bFF7eYvRmM59hUJeHAEHC",
+                "name": "JSONPath Query",
+                "title": "Read In Provisioned IP",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read In Provisioned IP",
+                  "input_json": "$activity.definition_activity_01AKWXB1QYYXR2OG4Ax9QiWlr0rLRv2i4bb.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.address",
+                      "jsonpath_query_name": "ip_address",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "ip_address_id",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01AKX1XYDGGCC6HPrs9gQNzgLFYjjrUVrs7",
+                "name": "Set Variables",
+                "title": "Set IP Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set IP Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01AKUE1LJZWE32MjLFamZk7MhUk7OXyTiRy.output.variable_workflow_01AKUFG4YMX3R0j7MYAsQYf97Lc8hpslcre$",
+                      "variable_value_new": "$activity.definition_activity_01AKX0O461LDL2bFF7eYvRmM59hUJeHAEHC.output.jsonpath_queries.ip_address$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ],
+            "categories": [
+              "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01AGADEYNMROP0cximVBt9kZqlkRyajyhTO",
+        "name": "SD-WAN Deploy_Prod",
+        "title": "SD-WAN Deploy_Prod",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": null,
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "description": "API calls to AO SD-WAN SBX",
+          "display_name": "SD-WAN Deploy_Prod",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "no_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01AGAETJBZNTC29W7nh6kIYwWIbuKognGU3",
+            "name": "HTTP Request",
+            "title": "AUTH",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{\n  \"j_username\": \"devnetuser\",\n  \"j_password\": \"Cisco123!\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": true,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "description": "Login to sandbox",
+              "display_name": "AUTH",
+              "method": "POST",
+              "relative_url": "/j_security_check",
+              "runtime_user": {
+                "override_target_runtime_user": true,
+                "runtime_user_id": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey"
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AGALNPB988W0IartGD6oI4bGoDB8fc4ye",
+            "name": "HTTP Request",
+            "title": "Get Device List",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Get all vEdge devices",
+              "display_name": "Get Device List",
+              "method": "GET",
+              "relative_url": "/dataservice/device",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AGB5KDP0JEH5CnbSfx7q5dWuQ0tUsPYgB",
+            "name": "HTTP Request",
+            "title": "Get Template",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Get all Templates",
+              "display_name": "Get Template",
+              "method": "GET",
+              "relative_url": "/dataservice/template/feature",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AI3JQRQXRDG74UelNb4Kclb3VDIv6r82r",
+            "name": "HTTP Request",
+            "title": "Push Template",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "{ \n   \"deviceTemplateList\":[ \n      { \n         \"templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n         \"device\":[ \n            { \n               \"csv-status\":\"complete\",\n               \"csv-deviceId\":\"f3d4159b-4172-462c-9c8d-8db76c31521d\",\n               \"csv-deviceIP\":\"4.4.4.61\",\n               \"csv-host-name\":\"vedge02\",\n               \"/1/loopback1/interface/ip/address\":\"2.2.2.2/32\",\n               \"/0/ge0/0/interface/ip/address\":\"20.20.20.2/24\",\n               \"//system/host-name\":\"vedge02\",\n               \"//system/system-ip\":\"4.4.4.61\",\n               \"//system/site-id\":\"300\",\n               \"csv-templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n               \"selected\":\"true\"\n            },\n            { \n               \"csv-status\":\"complete\",\n               \"csv-deviceId\":\"4af9e049-0052-47e9-83af-81a5825f7ffe\",\n               \"csv-deviceIP\":\"4.4.4.60\",\n               \"csv-host-name\":\"vedge01\",\n               \"/1/loopback1/interface/ip/address\":\"1.1.1.1/32\",\n               \"/0/ge0/0/interface/ip/address\":\"10.10.10.2/24\",\n               \"//system/host-name\":\"vedge02\",\n               \"//system/system-ip\":\"4.4.4.60\",\n               \"//system/site-id\":\"200\",\n               \"csv-templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n               \"selected\":\"true\"\n            }\n         ],\n         \"isEdited\":\"false\",\n         \"isMasterEdited\":\"false\"\n      }\n   ]\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Push template",
+              "display_name": "Push Template",
+              "method": "POST",
+              "relative_url": "/dataservice/template/device/config/attachfeature",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01AI4K6JKEYTP3KfyjowHyHWpMdvYw9Bjgn",
+            "name": "HTTP Request",
+            "title": "Check Template",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "description": "Check device template",
+              "display_name": "Check Template",
+              "method": "GET",
+              "relative_url": "dataservice/template/device/config/attached/72babaf2-68b6-4176-92d5-fa8de58e19d8",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    }
+  ]
+}

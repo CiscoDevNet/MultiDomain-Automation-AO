@@ -1,0 +1,1192 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe",
+    "name": "Initiate Discovery",
+    "title": "Initiate Discovery",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "SJC-20",
+          "scope": "input",
+          "name": "Building",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "10.10.20.80-10.10.20.84",
+          "scope": "input",
+          "name": "IP Range",
+          "type": "datatype.string",
+          "description": "Enter IP Range\nExample (10.10.20.80-10.10.20.84)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76PJ373RwdL0Ulv1jmYoHRwBx7T",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "San Jose",
+          "scope": "input",
+          "name": "Area",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Cred_ID_List",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76SV25cIulc9FCCCKea2GsLK70g",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01FFBFMD1PK427kHbrXZGVMY2HIVkqfHLrr",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "Cred": "{\"type\": \"CLI\"}"
+              }
+            },
+            {
+              "column_data": {
+                "Cred": "{\"type\": \"SNMPV2_READ_COMMUNITY\"}"
+              }
+            },
+            {
+              "column_data": {
+                "Cred": "{\"type\": \"SNMPV2_WRITE_COMMUNITY\"}"
+              }
+            }
+          ],
+          "scope": "local",
+          "name": "Creds",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76RBY1d2BsY4C3NAdEX99MedjjV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "2",
+          "scope": "input",
+          "name": "Floor",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FLCTXDQVP0B1LHNa3fDiJ3iycGrOe6W1w",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "720 Alder Drive, Milpitas, California 95035",
+          "scope": "input",
+          "name": "Address",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FLCXH3GPCIX2LHXY2CtUlFyYEFFdeFd49",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Discovery-1",
+          "scope": "input",
+          "name": "Discovery Name",
+          "type": "datatype.string",
+          "description": "Unique discovery name required",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76M0R0ai3u9Cm31q7nETSrMIv3c",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Error",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76NUK6JfzspnbPB70YV1iiIUaMo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Floor ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FM49UI7LDUQ7hEk7jHOKKf98eR9gLeAZb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Active",
+          "scope": "local",
+          "name": "Discovery Status",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL5X0D76FNJ0uV36rL8BiVlVfy31xdnRq",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Initiate Device Discovering in DNAC",
+      "display_name": "Initiate Discovery",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01FL5X13D8GC90D3uhQG5Jiup5KHDrxzn4R",
+        "name": "HTTP Request",
+        "title": "DNA-C Authenticate",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "https://sandboxdnac2.cisco.com/api/system/v1/auth/token",
+          "display_name": "DNA-C Authenticate",
+          "method": "POST",
+          "relative_url": "api/system/v1/auth/token",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7",
+        "name": "JSONPath Query",
+        "title": "Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Token",
+          "input_json": "$activity.definition_activity_01FL5X13D8GC90D3uhQG5Jiup5KHDrxzn4R.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.Token",
+              "jsonpath_query_name": "Token",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01FM335E4S0035PV3fpNIbU4LaVPqBRFYNe",
+        "name": "Parallel Block",
+        "title": "Site Automation",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Site Automation",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01FM335GYBFKT0ziZdqfMRSkG3HXMoDGTZQ",
+            "name": "Parallel Branch",
+            "title": "Site Design",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Site Design",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01FLCQ996DZHD59YeZGDFv4FeRg8vjJKV1E",
+                "name": "HTTP Request",
+                "title": "POST Area Creation",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n    \"type\": \"area\",\n    \"site\": {\n        \"area\": {\n            \"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$\",\n            \"parentName\": \"Global\"\n        }\n    }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "POST Area Creation",
+                  "method": "POST",
+                  "relative_url": "dna/intent/api/v1/site",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM2PETPW3ZY23MXbBmPvDhX2ZUnMflChf",
+                "name": "Sleep",
+                "title": "Wait Area Creation",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Wait Area Creation",
+                  "skip_execution": false,
+                  "sleep_interval": 5
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FLCW1NM4PZ92VBfQAGNUZkSzFrcVoMD9V",
+                "name": "HTTP Request",
+                "title": "POST Building Creation",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n    \"type\": \"building\",\n    \"site\": {\n    \t\n        \"area\": {\n            \"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$\",\n            \"parentName\": \"Global\"\n        },\n        \"building\": {\n            \"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO$\",\n            \"address\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCXH3GPCIX2LHXY2CtUlFyYEFFdeFd49$\"\n        }\n    }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "POST Building Creation",
+                  "method": "POST",
+                  "relative_url": "dna/intent/api/v1/site",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM2PXMECZC24neyoKeUW5NPsXlbn4jzmV",
+                "name": "Sleep",
+                "title": "Wait Building Creation",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Wait Building Creation",
+                  "skip_execution": false,
+                  "sleep_interval": 5
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FLD0REUDKIK2uA7h3rcplQE4p1cH2zy5u",
+                "name": "HTTP Request",
+                "title": "POST Floor Creation",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n    \"type\": \"floor\",\n    \"site\": {\n    \t\"area\": {\n            \"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$\",\n            \"parentName\": \"Global\"\n        },\n        \"building\": {\n            \"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO$\",\n            \"parentName\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$\"\n        },\n        \"floor\": {\n        \t\"name\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCTXDQVP0B1LHNa3fDiJ3iycGrOe6W1w$\",\n        \t\"parentName\": \"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO$\",\n        \t\"width\": \"100\",\n        \t\"length\": \"100\",\n        \t\"height\": \"10\",\n        \t\"rfModel\": \"Cubes And Walled Offices\"\n        }\n    }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "POST Floor Creation",
+                  "method": "POST",
+                  "relative_url": "dna/intent/api/v1/site",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM4KNUX7UXT6PnFFH1Ysj4avRzsFwLJAe",
+                "name": "Sleep",
+                "title": "Wait for Floor Creation",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Wait for Floor Creation",
+                  "skip_execution": false,
+                  "sleep_interval": 5
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM387BOIQOP7ObhAPIgI9iQKWFccdcHQB",
+                "name": "HTTP Request",
+                "title": "Get Floor ID",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "Get Floor ID",
+                  "method": "GET",
+                  "relative_url": "dna/intent/api/v1/site?name=Global/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO$/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCTXDQVP0B1LHNa3fDiJ3iycGrOe6W1w$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM3HXVEQTDF4YGT97wbbwanOpn7jyyT28",
+                "name": "JSONPath Query",
+                "title": "Floor ID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "capture ID",
+                  "display_name": "Floor ID",
+                  "input_json": "$activity.definition_activity_01FM387BOIQOP7ObhAPIgI9iQKWFccdcHQB.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..id",
+                      "jsonpath_query_name": "id",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FM49ZMZ9M9F3RnKJmt7uYCalhcL3LhQql",
+                "name": "Set Variables",
+                "title": "Set Floor ID",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Floor ID",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.local.variable_workflow_01FM49UI7LDUQ7hEk7jHOKKf98eR9gLeAZb$",
+                      "variable_value_new": "$activity.definition_activity_01FM3HXVEQTDF4YGT97wbbwanOpn7jyyT28.output.jsonpath_queries.id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01FM335HT2CAQ5YMXm70WnoY1tUb5PGGMVx",
+            "name": "Parallel Branch",
+            "title": "Network Discovery",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Network Discovery",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01FL5X2PCO5VO68jjqHdnw7WZaHW1ecjdPx",
+                "name": "HTTP Request",
+                "title": "POST Discovery init",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\"discoveryType\":\"Range\",\n\t\"preferredMgmtIPMethod\":\"UseLoopBack\",\n\t\"ipAddressList\":\"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FL5X0D76PJ373RwdL0Ulv1jmYoHRwBx7T$\",\n\t\"ipFilterList\":[],\n\t\"protocolOrder\":\"ssh,telnet\",\n\t\"cdpLevel\":\"5\",\n\t\"lldpLevel\":\"16\",\n\t\"timeout\":\"5\",\n\t\"retry\":\"3\",\n\t\"globalCredentialIdList\":[\n   \"3eaff876-cf7e-4226-9af0-3901a5772334\",\n   \"d34baa08-36ab-4b2b-8944-b8fae1af4669\"\n\t],\n\t\"name\":\"$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FL5X0D76M0R0ai3u9Cm31q7nETSrMIv3c$\"}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "POST Discovery init",
+                  "method": "POST",
+                  "relative_url": "dna/intent/api/v1/discovery",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FL5X2WDIW9I6tWZBBWIsGRROLTC7QkKj0",
+                "name": "JSONPath Query",
+                "title": "TaskId",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "TaskId",
+                  "input_json": "$activity.definition_activity_01FL5X2PCO5VO68jjqHdnw7WZaHW1ecjdPx.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response.taskId",
+                      "jsonpath_query_name": "taskId",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FL5X33M6YSB5QNRcGyE3jUF9DCS014Vuo",
+                "name": "HTTP Request",
+                "title": "Check Task Status",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "x-auth-token",
+                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                    }
+                  ],
+                  "display_name": "Check Task Status",
+                  "method": "GET",
+                  "relative_url": "/api/v1/task/$activity.definition_activity_01FL5X2WDIW9I6tWZBBWIsGRROLTC7QkKj0.output.jsonpath_queries.taskId$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FL5X3AHIJ625Pcc0l4jW5FHdjKoUwKwDL",
+                "name": "JSONPath Query",
+                "title": "Error Handler",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "Capture Error if any",
+                  "display_name": "Error Handler",
+                  "input_json": "$activity.definition_activity_01FL5X33M6YSB5QNRcGyE3jUF9DCS014Vuo.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response.isError",
+                      "jsonpath_query_name": "isError",
+                      "jsonpath_query_type": "boolean"
+                    },
+                    {
+                      "jsonpath_query": "$.response.progress",
+                      "jsonpath_query_name": "progress",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FL5X3FDRZT00M29Mc8LRmPGepKL57qHzw",
+                "name": "Condition Block",
+                "title": "Process Task ",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Process Task ",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01FL5X3JI6FZB0lv1odlNwYaIh5fNssRzJj",
+                    "name": "Condition Branch",
+                    "title": "No Issues",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FL5X3AHIJ625Pcc0l4jW5FHdjKoUwKwDL.output.jsonpath_queries.isError$",
+                        "operator": "eq",
+                        "right_operand": false
+                      },
+                      "continue_on_failure": false,
+                      "description": "There is no issue with Init Discovery",
+                      "display_name": "No Issues",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FL5X3O2V9TG2BwU61pZnD0osZbj4cqkPm",
+                        "name": "While Loop",
+                        "title": "While Discovery in Progress",
+                        "type": "logic.while",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "While Discovery in Progress",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01FL5X3RFY9E65rSKVekhCkPzhyXRZGdgNW",
+                            "name": "Condition Branch",
+                            "title": "discoveryStatus  = Active",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.local.variable_workflow_01FL5X0D76FNJ0uV36rL8BiVlVfy31xdnRq$",
+                                "operator": "eq",
+                                "right_operand": "Active"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "discoveryStatus  = Active",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FL5X3XGJTCH69duoaGYQFtttrsR1MpL4I",
+                                "name": "HTTP Request",
+                                "title": "GET Discovery",
+                                "type": "web-service.http_request",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "allow_auto_redirect": true,
+                                  "content_type": "application/json",
+                                  "continue_on_error_status_code": false,
+                                  "continue_on_failure": false,
+                                  "custom_headers": [
+                                    {
+                                      "name": "x-auth-token",
+                                      "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                                    }
+                                  ],
+                                  "display_name": "GET Discovery",
+                                  "method": "GET",
+                                  "relative_url": "/dna/intent/api/v1/discovery/1/1",
+                                  "runtime_user": {
+                                    "override_target_runtime_user": false,
+                                    "target_default": true
+                                  },
+                                  "skip_execution": false,
+                                  "target": {
+                                    "use_workflow_target": true
+                                  }
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FL5X44RUG4M7EqBevHZXEbBVJIdfeK3AP",
+                                "name": "JSONPath Query",
+                                "title": "Discovery Status",
+                                "type": "corejava.jsonpathquery",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "continue_on_failure": false,
+                                  "description": "capture discoveryStatus",
+                                  "display_name": "Discovery Status",
+                                  "input_json": "$activity.definition_activity_01FL5X3XGJTCH69duoaGYQFtttrsR1MpL4I.output.response_body$",
+                                  "jsonpath_queries": [
+                                    {
+                                      "jsonpath_query": "$.response[*].discoveryStatus",
+                                      "jsonpath_query_name": "discoveryStatus",
+                                      "jsonpath_query_type": "string"
+                                    }
+                                  ],
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FL5X49LWFMD59TPHMNsco9YBmRGHDXSPg",
+                                "name": "Set Variables",
+                                "title": "Set Discovery Status",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Set Discovery Status",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.local.variable_workflow_01FL5X0D76FNJ0uV36rL8BiVlVfy31xdnRq$",
+                                      "variable_value_new": "$activity.definition_activity_01FL5X44RUG4M7EqBevHZXEbBVJIdfeK3AP.output.jsonpath_queries.discoveryStatus$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FL5X4H7G0ZB2CtlhHB5uTFnN5mWCinyBC",
+                                "name": "HTTP Request",
+                                "title": "POST Team Msg",
+                                "type": "web-service.http_request",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "allow_auto_redirect": true,
+                                  "body": "{\n \"markdown\": \"**Discovery Status:** $activity.definition_activity_01FL5X44RUG4M7EqBevHZXEbBVJIdfeK3AP.output.jsonpath_queries.discoveryStatus$ \",\n \"roomId\": \"Y2lzY29zcGFyazovL3VzL1JPT00vMTQ3NzE3YjAtODY3Yi0xMWVhLTkxNjktZDM5ZDkyOWY3NWFl\"\n}",
+                                  "content_type": "application/json",
+                                  "continue_on_error_status_code": false,
+                                  "continue_on_failure": false,
+                                  "custom_headers": [
+                                    {
+                                      "name": "Authorization",
+                                      "value": "$global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL.global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL$"
+                                    }
+                                  ],
+                                  "display_name": "POST Team Msg",
+                                  "method": "POST",
+                                  "relative_url": "/v1/messages",
+                                  "runtime_user": {
+                                    "override_target_runtime_user": false,
+                                    "target_default": true
+                                  },
+                                  "skip_execution": false,
+                                  "target": {
+                                    "override_workflow_target": true,
+                                    "override_workflow_target_group_criteria": false,
+                                    "target_id": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im",
+                                    "use_workflow_target_group": false
+                                  }
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FL5X4MLR9K04PVVIE9MARPbsnTJVMuphx",
+                                "name": "Sleep",
+                                "title": "Sleep",
+                                "type": "core.sleep",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Sleep",
+                                  "skip_execution": false,
+                                  "sleep_interval": 5
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01FL5X4RZHV1Y6slmwze7KIaX3SBgiqaGJ8",
+                        "name": "HTTP Request",
+                        "title": "GET Discovery",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "x-auth-token",
+                              "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                            }
+                          ],
+                          "display_name": "GET Discovery",
+                          "method": "GET",
+                          "relative_url": "/dna/intent/api/v1/discovery/1/1",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "use_workflow_target": true
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FL5X4YDCXDL1EFvgtq9CX4Alp5RZQ0LKB",
+                        "name": "JSONPath Query",
+                        "title": "Discovered Devices",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Discovered Devices",
+                          "input_json": "$activity.definition_activity_01FL5X4RZHV1Y6slmwze7KIaX3SBgiqaGJ8.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.response[*].deviceIds",
+                              "jsonpath_query_name": "deviceIds",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FL8F8IQ9RTL6OixTc6kxcvXMRR0W9iApy",
+                        "name": "Split String",
+                        "title": "Split Device ID String",
+                        "type": "core.splitstring",
+                        "base_type": "activity",
+                        "properties": {
+                          "boundaries": [
+                            {
+                              "boundary": ","
+                            }
+                          ],
+                          "continue_on_failure": false,
+                          "display_name": "Split Device ID String",
+                          "input_string": "$activity.definition_activity_01FL5X4YDCXDL1EFvgtq9CX4Alp5RZQ0LKB.output.jsonpath_queries.deviceIds$",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FL8FUBZ3MWX54k0AU9Hvx0T1FrwultUEN",
+                        "name": "For Each",
+                        "title": "For Each Device ID",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each Device ID",
+                          "skip_execution": false,
+                          "source_array": "$activity.definition_activity_01FL8F8IQ9RTL6OixTc6kxcvXMRR0W9iApy.output.parts$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01FLA4OR1A4VK7j555vwph2d2q9rMRzTbpI",
+                            "name": "HTTP Request",
+                            "title": "GET Device Details",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "content_type": "application/json",
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "custom_headers": [
+                                {
+                                  "name": "x-auth-token",
+                                  "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                                }
+                              ],
+                              "display_name": "GET Device Details",
+                              "method": "GET",
+                              "relative_url": "/api/v1/network-device/$activity.definition_activity_01FL8FUBZ3MWX54k0AU9Hvx0T1FrwultUEN.input.source_array[@]$",
+                              "runtime_user": {
+                                "override_target_runtime_user": false,
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "use_workflow_target": true
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV",
+                            "name": "JSONPath Query",
+                            "title": "Device Details",
+                            "type": "corejava.jsonpathquery",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "Device Details",
+                              "input_json": "$activity.definition_activity_01FLA4OR1A4VK7j555vwph2d2q9rMRzTbpI.output.response_body$",
+                              "jsonpath_queries": [
+                                {
+                                  "jsonpath_query": "$.response.id",
+                                  "jsonpath_query_name": "deviceIds",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$.response.macAddress",
+                                  "jsonpath_query_name": "macAddress",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$.response.managementIpAddress",
+                                  "jsonpath_query_name": "managementIpAddress",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$.response.type",
+                                  "jsonpath_query_name": "type",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$.response.hostname",
+                                  "jsonpath_query_name": "hostname",
+                                  "jsonpath_query_type": "string"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01FL5X551KO853LSJHm4qGsjlCFakhApIdD",
+                            "name": "HTTP Request",
+                            "title": "Post Team Msg",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "body": "{\n \"markdown\": \"> **Discovered Device ID:** $activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.deviceIds$ \\n\\n **hostname:** $activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.hostname$ \\n\\n **type:** $activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.type$ \\n\\n **IP:** $activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.managementIpAddress$ \\n\\n **MAC:** $activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.macAddress$  \",\n \"roomId\": \"Y2lzY29zcGFyazovL3VzL1JPT00vMTQ3NzE3YjAtODY3Yi0xMWVhLTkxNjktZDM5ZDkyOWY3NWFl\"\n}",
+                              "content_type": "application/json",
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "custom_headers": [
+                                {
+                                  "name": "Authorization",
+                                  "value": "$global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL.global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL$"
+                                }
+                              ],
+                              "display_name": "Post Team Msg",
+                              "method": "POST",
+                              "relative_url": "/v1/messages",
+                              "runtime_user": {
+                                "override_target_runtime_user": false,
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "override_workflow_target": true,
+                                "override_workflow_target_group_criteria": false,
+                                "target_id": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im",
+                                "use_workflow_target_group": false
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01FM3QW8FXVPD4plq06atSFaYRWIIFeI136",
+                            "name": "HTTP Request",
+                            "title": "Add Device to Site",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "body": "{\n\t\"device\": [\n\t\t{\n\t\t\t\"ip\":\"$activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.managementIpAddress$\"\n\t\t}\n\t\t]\n}",
+                              "content_type": "application/json",
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "custom_headers": [
+                                {
+                                  "name": "x-auth-token",
+                                  "value": "$activity.definition_activity_01FL5X19BS6D144UEzEWQjSewqVzOj7fUJ7.output.jsonpath_queries.Token$"
+                                }
+                              ],
+                              "display_name": "Add Device to Site",
+                              "method": "POST",
+                              "relative_url": "dna/system/api/v1/site/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.local.variable_workflow_01FM49UI7LDUQ7hEk7jHOKKf98eR9gLeAZb$/device",
+                              "runtime_user": {
+                                "override_target_runtime_user": false,
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "use_workflow_target": true
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01FM4EF1HP3PL1v1vPq55r1RQyzFfip7t1c",
+                            "name": "HTTP Request",
+                            "title": "Post Team Msg",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "body": "{\n \"markdown\": \"Added **$activity.definition_activity_01FLA5KT4S5ZI1Qxa96HmjaI6R6vqHhZjyV.output.jsonpath_queries.hostname$** To **Global/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCSJI4Q8HI6Jty8eH3wO35YmOajEv18k$/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCT67VP3MY025tJIJejGz67giFtVr0tO$/$workflow.definition_workflow_01FL5X0DEPVVE4rB8YnzEJfrcuaIZKyeoxe.input.variable_workflow_01FLCTXDQVP0B1LHNa3fDiJ3iycGrOe6W1w$** Site Hierarchy\",\n \"roomId\": \"Y2lzY29zcGFyazovL3VzL1JPT00vMTQ3NzE3YjAtODY3Yi0xMWVhLTkxNjktZDM5ZDkyOWY3NWFl\"\n}",
+                              "content_type": "application/json",
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "custom_headers": [
+                                {
+                                  "name": "Authorization",
+                                  "value": "$global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL.global.variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL$"
+                                }
+                              ],
+                              "display_name": "Post Team Msg",
+                              "method": "POST",
+                              "relative_url": "/v1/messages",
+                              "runtime_user": {
+                                "override_target_runtime_user": false,
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "override_workflow_target": true,
+                                "override_workflow_target_group_criteria": false,
+                                "target_id": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im",
+                                "use_workflow_target_group": false
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01FL5X5AY88UF303CbuXmPXcBu4UkiE6c75",
+                    "name": "Condition Branch",
+                    "title": "Error",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FL5X3AHIJ625Pcc0l4jW5FHdjKoUwKwDL.output.jsonpath_queries.isError$",
+                        "operator": "eq",
+                        "right_operand": true
+                      },
+                      "continue_on_failure": false,
+                      "description": "There is an Error with discovery",
+                      "display_name": "Error",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FL5X5GMYKBO3NArCHOGDM3HBvW4xYoJNR",
+                        "name": "JSONPath Query",
+                        "title": "Error Code",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": true,
+                          "description": "Capture Error Code",
+                          "display_name": "Error Code",
+                          "input_json": "$activity.definition_activity_01FL5X33M6YSB5QNRcGyE3jUF9DCS014Vuo.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.response.errorCode",
+                              "jsonpath_query_name": "errorCode",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC": {
+      "unique_name": "definition_target_01AIFOYFEI6AJ7D3yfsTcNQDhMHooB4wPzC",
+      "name": "AO SB DNAC2",
+      "title": "AO SB DNAC2",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch",
+        "disable_certificate_validation": false,
+        "display_name": "AO SB DNAC2",
+        "host": "sandboxdnac2.cisco.com",
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im": {
+      "unique_name": "definition_target_01APHGZ2TIZQT4OswzevVNF0UVDuiWuZ2im",
+      "name": "Teams - PostMsg",
+      "title": "Teams - PostMsg",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Teams - PostMsg",
+        "host": "api.ciscospark.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch": {
+      "unique_name": "definition_runtime_user_01AIFNARWUX5T7IOJWgwDb0TzNjJbgWr8Ch",
+      "name": "AO DNAC2 Creds",
+      "title": "AO DNAC2 Creds",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "AO DNAC2 Creds"
+      }
+    }
+  },
+  "variables": {
+    "variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL": {
+      "unique_name": "variable_01AP2R2ZAIWSL3b5eze7yeIgXfJH4qH2POL",
+      "properties": {
+        "value": "Bearer MjkzZTNjNmItYWEyMC00MzIwLWEwNWEtZGQ1ODE5YTY2MTYzYzQ5NGQ4MzEtNDlh_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "scope": "global",
+        "name": "BotToken",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01FFBFMD1PK427kHbrXZGVMY2HIVkqfHLrr": {
+      "unique_name": "tabletype_01FFBFMD1PK427kHbrXZGVMY2HIVkqfHLrr",
+      "data_type": "datatype.tabletype",
+      "display_name": "Json",
+      "columns": [
+        {
+          "name": "Cred",
+          "title": "Cred",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
