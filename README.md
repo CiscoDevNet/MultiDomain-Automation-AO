@@ -36,6 +36,6 @@ Using Cisco Action Orchastrator:
  ![alt text](https://raw.githubusercontent.com/CiscoDevNet/MultiDomain-Automation-AO/master/img/import2.png "Step 2")
  
  - Configure workflow **Targets** [How To](https://docs.cloudmgmt.cisco.com/display/ACTIONORCHESTRATOR/Overview+Targets) for each technology. `Hint: you can point to the DevNet Always-on Sandbox`
- - Validate and run flows. 
+ - Validate and run workflows. 
 
  
