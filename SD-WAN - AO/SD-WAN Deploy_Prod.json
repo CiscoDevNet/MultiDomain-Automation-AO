@@ -1,0 +1,214 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AGADEYNMROP0cximVBt9kZqlkRyajyhTO",
+    "name": "SD-WAN Deploy_Prod",
+    "title": "SD-WAN Deploy_Prod",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "API calls to AO SD-WAN SBX",
+      "display_name": "SD-WAN Deploy_Prod",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01AGAETJBZNTC29W7nh6kIYwWIbuKognGU3",
+        "name": "HTTP Request",
+        "title": "AUTH",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"j_username\": \"devnetuser\",\n  \"j_password\": \"Cisco123!\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "description": "Login to sandbox",
+          "display_name": "AUTH",
+          "method": "POST",
+          "relative_url": "/j_security_check",
+          "runtime_user": {
+            "override_target_runtime_user": true,
+            "runtime_user_id": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey"
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AGALNPB988W0IartGD6oI4bGoDB8fc4ye",
+        "name": "HTTP Request",
+        "title": "Get Device List",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "Get all vEdge devices",
+          "display_name": "Get Device List",
+          "method": "GET",
+          "relative_url": "/dataservice/device",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AGB5KDP0JEH5CnbSfx7q5dWuQ0tUsPYgB",
+        "name": "HTTP Request",
+        "title": "Get Template",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "Get all Templates",
+          "display_name": "Get Template",
+          "method": "GET",
+          "relative_url": "/dataservice/template/feature",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AI3JQRQXRDG74UelNb4Kclb3VDIv6r82r",
+        "name": "HTTP Request",
+        "title": "Push Template",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{ \n   \"deviceTemplateList\":[ \n      { \n         \"templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n         \"device\":[ \n            { \n               \"csv-status\":\"complete\",\n               \"csv-deviceId\":\"f3d4159b-4172-462c-9c8d-8db76c31521d\",\n               \"csv-deviceIP\":\"4.4.4.61\",\n               \"csv-host-name\":\"vedge02\",\n               \"/1/loopback1/interface/ip/address\":\"2.2.2.2/32\",\n               \"/0/ge0/0/interface/ip/address\":\"20.20.20.2/24\",\n               \"//system/host-name\":\"vedge02\",\n               \"//system/system-ip\":\"4.4.4.61\",\n               \"//system/site-id\":\"300\",\n               \"csv-templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n               \"selected\":\"true\"\n            },\n            { \n               \"csv-status\":\"complete\",\n               \"csv-deviceId\":\"4af9e049-0052-47e9-83af-81a5825f7ffe\",\n               \"csv-deviceIP\":\"4.4.4.60\",\n               \"csv-host-name\":\"vedge01\",\n               \"/1/loopback1/interface/ip/address\":\"1.1.1.1/32\",\n               \"/0/ge0/0/interface/ip/address\":\"10.10.10.2/24\",\n               \"//system/host-name\":\"vedge02\",\n               \"//system/system-ip\":\"4.4.4.60\",\n               \"//system/site-id\":\"200\",\n               \"csv-templateId\":\"72babaf2-68b6-4176-92d5-fa8de58e19d8\",\n               \"selected\":\"true\"\n            }\n         ],\n         \"isEdited\":\"false\",\n         \"isMasterEdited\":\"false\"\n      }\n   ]\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "Push template",
+          "display_name": "Push Template",
+          "method": "POST",
+          "relative_url": "/dataservice/template/device/config/attachfeature",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01AI4K6JKEYTP3KfyjowHyHWpMdvYw9Bjgn",
+        "name": "HTTP Request",
+        "title": "Check Template",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "Check device template",
+          "display_name": "Check Template",
+          "method": "GET",
+          "relative_url": "dataservice/template/device/config/attached/72babaf2-68b6-4176-92d5-fa8de58e19d8",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0"
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0": {
+      "unique_name": "definition_target_01AGAJSOKBC0Z4dDy1iYGCXLqjk7vAUJAX0",
+      "name": "SD-WAN-SBX",
+      "title": "SD-WAN-SBX",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey",
+        "disable_certificate_validation": true,
+        "display_name": "SD-WAN-SBX",
+        "host": "sandboxsdwan.cisco.com",
+        "no_runtime_user": false,
+        "port": 8443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey": {
+      "unique_name": "definition_runtime_user_01AO53THWTLS33WXMtHOj2LicxvWkbwN3ey",
+      "name": "SD-WAN-SBX-CREDS",
+      "title": "SD-WAN-SBX-CREDS",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "SD-WAN-SBX-CREDS"
+      }
+    }
+  }
+}
