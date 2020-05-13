@@ -21,8 +21,10 @@ Import Meraki-Net-Setup.json first then Meraki-Multi-Domain.json to create the f
 ### Creating the Network
 
 Now that CAO is ready to go we can build out the workflow.  The first step is creating our new network in our organization.  This is done by calling the /networks endpoint with a method of POST using a Web Service core (pre-built) activity in CAO.  Note that the organization ID in the url is set by the global variable mentioned above using the notation “[$global.Meraki Org ID$]”.  A similar variable reference is made in the payload as the name of the network is being set dynamically through run-time input and is referenced as “[$workflow.Meraki Net Setup_Prod.input.Tenant Name]”.  Meraki Net Setup_Prod is the name of the workflow being created.  Creating a network generates a network ID that is needed in the following steps, so another CAO Core activity called JSONPath Query is used to parse the resulting JSON response body.  This can then be referenced in later actions.
+
 <img src="Figure%202.png" width=500>
 Figure 2: Creating the Meraki Network
+
 <img src="Figure%203.png" width=500>
 Figure 3: Getting the new network Id
 
