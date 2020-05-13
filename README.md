@@ -26,6 +26,9 @@ Using Cisco Action Orchastrator:
  - DNAC - Initiate site creation, Network device Discovery and provision devices
  
 ## Setup and Configuration
+ - To get started with the workflows, clone the Github repo `git clone https://github.com/CiscoDevNet/MultiDomain-Automation-AO.git`
+ - If you are interested in a portion of this end-end automation workflow, check out the specific technology directory and import the workflow into your instance of CAO
+ - If you are interested in the end to end automation , check out [End-End Multi-Domain](https://github.com/CiscoDevNet/MultiDomain-Automation-AO/tree/master/End-End%20Multi-Domain%20-%20AO) and import the entire end to end workflow
  - Sign-up for an instance of [Cisco Action Orchestrator](https://engage2demand.cisco.com/lp_cisco_cloudcenter_suite_saas_free_trial_17572)
  - Import CAO automation JSON 
  
