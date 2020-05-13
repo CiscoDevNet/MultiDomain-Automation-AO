@@ -1,0 +1,578 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL",
+    "name": "Meraki Net Setup_Prod",
+    "title": "Meraki Net Setup_Prod",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Hub Network",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EX883MEBAKM4pF2aBIhYe7r0yyUCBREgh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string",
+          "description": "Tenant Name Passed",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01DLU4D5TWH3V6ovznNaUfjTwrQQ6KCbtze",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "New Network ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01DLUDUK5QQEW5K7qsTOC60kePQd94KglcG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Meraki Net Setup_Prod",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01DLUP7LDWUG12NFQey3RNk3QgU2T3veM1t",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01DLVVZA4ZY5B7c5YpTavfdUpGcXlc1RFCj",
+        "name": "HTTP Request",
+        "title": "Get Network List",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n    \"name\": \"$workflow.definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL.input.variable_workflow_01DLU4D5TWH3V6ovznNaUfjTwrQQ6KCbtze$\",\n    \"timeZone\": \"America/Los_Angeles\",\n    \"tags\": \"cao multidomain\",\n    \"type\": \"wireless appliance switch camera\"\n }",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Get Network List",
+          "method": "GET",
+          "relative_url": "/api/v0/organizations/$global.variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev.global.variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev$/networks",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLWD9MQ14H35QBAKW0clKeJ6V9uz4D456",
+        "name": "JSONPath Query",
+        "title": "Network ID to delete",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "Network ID to delete",
+          "input_json": "$activity.definition_activity_01DLVVZA4ZY5B7c5YpTavfdUpGcXlc1RFCj.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$[1].id",
+              "jsonpath_query_name": "id",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EX8IJUIROZ97g9iwIeIPANInhPbOSQUu4",
+        "name": "Read Table from JSON",
+        "title": "Networks JSON to Table",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Networks JSON to Table",
+          "input_json": "$activity.definition_activity_01DLVVZA4ZY5B7c5YpTavfdUpGcXlc1RFCj.output.response_body$",
+          "jsonpath_query": "$.[*]",
+          "persist_output": false,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string"
+            },
+            {
+              "column_name": "name",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EX7QXHY2JNB23zr6nnFjWxopAdzdUjZ5s",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01EX8IJUIROZ97g9iwIeIPANInhPbOSQUu4.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01EX82Q13J6RX2ShrAEVW6IWilLRqDauuCG",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01EX82Q38ZTR63lyjHM2FTnG6OTyVP86Sx8",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01EX7QXHY2JNB23zr6nnFjWxopAdzdUjZ5s.input.source_array[@].name$",
+                    "operator": "eq",
+                    "right_operand": "Headquarters"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01EX84YT9B2JS4dbXLYVZ8RbAJY7I0MWfPk",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL.local.variable_workflow_01EX883MEBAKM4pF2aBIhYe7r0yyUCBREgh$",
+                          "variable_value_new": "$activity.definition_activity_01EX7QXHY2JNB23zr6nnFjWxopAdzdUjZ5s.input.source_array[@].id$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01DLWD0PJXNOP0hu79PFV6Oe1HabhlXWhNZ",
+        "name": "HTTP Request",
+        "title": "Delete Meraki Network",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "description": "Clean up previous run",
+          "display_name": "Delete Meraki Network",
+          "method": "DELETE",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLWD9MQ14H35QBAKW0clKeJ6V9uz4D456.output.jsonpath_queries.id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLWF1JWCHO30iYlQmOAnSvwcFHgUG6xPO",
+        "name": "HTTP Request",
+        "title": "Create Meraki Network",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n    \"name\": \"$workflow.definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL.input.variable_workflow_01DLU4D5TWH3V6ovznNaUfjTwrQQ6KCbtze$\",\n    \"timeZone\": \"America/Los_Angeles\",\n    \"tags\": \"cao multidomain\",\n    \"type\": \"wireless appliance switch camera\"\n }",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Create Meraki Network",
+          "method": "POST",
+          "relative_url": "/api/v0/organizations/$global.variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev.global.variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev$/networks",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w",
+        "name": "JSONPath Query",
+        "title": "network Id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "network Id",
+          "input_json": "$activity.definition_activity_01DLWF1JWCHO30iYlQmOAnSvwcFHgUG6xPO.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.id",
+              "jsonpath_query_name": "id",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLVNA2L5DYF0q9GJdchAWYEQvrBLYffZe",
+        "name": "HTTP Request",
+        "title": "Claim MR and MX to Network",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"serial\":\"QBSA-PXBE-DCCW\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Claim MR and MX to Network",
+          "method": "POST",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/devices/claim",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLW3AI5BXF55jyBkAPmS3snwFAs1b6myP",
+        "name": "HTTP Request",
+        "title": "Claim MR and MX to Network",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"serial\":\"QBSC-2URS-T832\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Claim MR and MX to Network",
+          "method": "POST",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/devices/claim",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLW7LMWJ29S5UH8GF1EDMGm1HMSqK6Wqq",
+        "name": "HTTP Request",
+        "title": "Enable VLANS",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n    \"enabled\": true\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Enable VLANS",
+          "method": "PUT",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/vlansEnabledState",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EWXSCLVI0ZK5CS1hQqJajCSv0RZQih3g9",
+        "name": "HTTP Request",
+        "title": "CREATE VLAN 2",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"id\": 2,\n  \"networkId\": \"[$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$]\",\n  \"name\": \"VLAN2\",\n  \"applianceIp\": \"192.168.2.1\",\n  \"subnet\": \"192.168.2.0/24\",\n  \"fixedIpAssignments\": {},\n  \"reservedIpRanges\": [],\n  \"dnsNameservers\": \"upstream_dns\",\n  \"dhcpHandling\": \"Run a DHCP server\",\n  \"dhcpLeaseTime\": \"1 day\",\n  \"dhcpBootOptionsEnabled\": false,\n  \"dhcpOptions\": []\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "CREATE VLAN 2",
+          "method": "POST",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/vlans",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLPEYW9UBA40KfTTtAPHyExXcf4AK7ubZ",
+        "name": "HTTP Request",
+        "title": "Set Meraki Site as Spoke",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n    \"mode\": \"spoke\",\n    \"hubs\": [\n        {\n            \"hubId\": \"$workflow.definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL.local.variable_workflow_01EX883MEBAKM4pF2aBIhYe7r0yyUCBREgh$\",\n            \"useDefaultRoute\": true\n        }\n    ],\n    \"subnets\": [\n        {\n            \"localSubnet\": \"192.168.128.0/24\",\n            \"useVpn\": false\n        },\n        {\n            \"localSubnet\": \"192.168.2.0/24\",\n            \"useVpn\": true\n        }\n    ]\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Set Meraki Site as Spoke",
+          "method": "PUT",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/siteToSiteVpn",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01DLPE3CM0S4G0Uz0TSWWbD5B1pCNQ3y6fu",
+        "name": "HTTP Request",
+        "title": "Set Meraki SSID",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n        \"number\": 0,\n        \"name\": \"$workflow.definition_workflow_01DLPC50AFLLZ3Fv7U0vHRpuNpiRbf3WeoL.input.variable_workflow_01DLU4D5TWH3V6ovznNaUfjTwrQQ6KCbtze$\",\n        \"enabled\": true,\n        \"splashPage\": \"None\",\n        \"ssidAdminAccessible\": false,\n        \"authMode\": \"psk\",\n        \"psk\": \"booyah22\",\n        \"encryptionMode\": \"wpa\",\n        \"wpaEncryptionMode\": \"WPA2 only\",\n        \"ipAssignmentMode\": \"Bridge mode\",\n        \"useVlanTagging\": false,\n        \"minBitrate\": 11,\n        \"bandSelection\": \"Dual band operation\",\n        \"perClientBandwidthLimitUp\": 0,\n        \"perClientBandwidthLimitDown\": 0,\n        \"lanIsolationEnabled\": false\n    }",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cisco-Meraki-API-Key",
+              "value": "$global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN.global.variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN$"
+            }
+          ],
+          "display_name": "Set Meraki SSID",
+          "method": "PUT",
+          "relative_url": "/api/v0/networks/$activity.definition_activity_01DLVGNK1BVLP1nAlaj6gMdKdhmjMERUI1w.output.jsonpath_queries.id$/ssids/0",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01DLUP7LDWUG12NFQey3RNk3QgU2T3veM1t": {
+      "unique_name": "definition_target_01DLUP7LDWUG12NFQey3RNk3QgU2T3veM1t",
+      "name": "Meraki Flexible",
+      "title": "Meraki Flexible",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "Need to add this so we can pass result vars to next request",
+        "disable_certificate_validation": false,
+        "display_name": "Meraki Flexible",
+        "host": "api.meraki.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "variables": {
+    "variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev": {
+      "unique_name": "variable_01DLUGBTWO9MA3Hy6j2lQ4yswsb6rlwe7Ev",
+      "properties": {
+        "value": "646829496481089588",
+        "scope": "global",
+        "name": "Meraki Org ID",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN": {
+      "unique_name": "variable_01DLUPTXJXQ9Z08Sn9jiVjcBRUSmfAR6mJN",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "Meraki API KEY",
+        "type": "datatype.secure_string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}
