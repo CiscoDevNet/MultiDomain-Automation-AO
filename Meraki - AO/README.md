@@ -3,7 +3,7 @@ Meraki networks are organized hierarchically.  Some actions can be taken in para
 
 ## Configuration in CAO
 
-Figure 1: Creating the Meraki Target
+![Figure 1: Creating the Meraki Target | width=100](Figure%201.png?raw=true)
 
 ### Creating the Meraki Target
 Before we get into the actual steps in the workflow, we need to set up Meraki as a Target within CAO. There is a pre-built Meraki family of activities in CAO, but it only covers a subset of the API calls that we need so in this instance we will set up an HTTP Endpoint.  Unfortunately, that also requires us to set the X-Cisco-Meraki-API-Key authorization header as a Global Variable rather than an Account Key so we can access it in our workflow.  Therefore the No Account Keys setting is set to True and the HTTP section will have HTTPS set with the HOST/IP ADDRESS set to api.meraki.com.
